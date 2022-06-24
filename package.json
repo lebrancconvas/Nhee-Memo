@@ -1,0 +1,16 @@
+{
+    "name": "Nhee-Memo",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/lebrancconvas/Nhee-Memo.git",
+    "author": "lebrancconvas <lebrancconvas@gmail.com>",
+    "license": "MIT",
+    "private": "true",
+    "workspaces": [
+        "packages/*",
+        "services/*"
+    ],
+    "devDependencies": {
+        "lerna": "^5.1.4"
+    }
+}
