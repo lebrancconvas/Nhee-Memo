@@ -1,7 +1,15 @@
 {
     "lists": [{
         "id": 1,
-        "name": "Kaprao",
-        "debt": 120
+        "title": "Pad Thai Paped",
+        "description": "Kaprao x 2",
+        "amount": 100,
+        "date": "20/06/2022"
+    }, {
+        "id": 2,
+        "title": "Apple",
+        "description": "Macbook Pro",
+        "amount": 55000,
+        "date": "10/10/2011"
     }]
 }
