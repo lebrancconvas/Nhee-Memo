@@ -1,5 +1,28 @@
 <script lang="ts">
+	import axios from 'axios';
+	import {onMount} from 'svelte';
 	import Button from '../lib/Button.svelte';
+
+	interface IListData {
+		id: number;
+		title: string;
+		description: string;
+		amount: number;
+		date: string;
+	}
+
+	// Get API Data.
+	// let data, response;
+	// let lists: IListData[] = [];
+	let lists = []; 
+	onMount(async() => {
+		const response = await axios.get('http://localhost:9000/lists')
+		lists = response.data;
+		// data.map(x => {
+		// 	lists.push(x);
+		// });
+	});
+
 </script>
 
 <main>
@@ -14,17 +37,19 @@
 			<tr>
 				<th>ID</th>
 				<th>Title</th>
-				<th>Content</th>
+				<th>Description</th> 
 				<th>Amount</th>
 				<th>Date</th>
 			</tr>
+			{#each lists as list}
 			<tr>
-				<td>1</td>
-				<td>ราดหน้าป้าเป็ด</td>
-				<td>ค้างค่าหมูทอดกระเทียมไข่ดาว 2 จาน</td>
-				<td>80 บาท</td>
-				<td>20/06/2022</td> 
+				<td>{list.id}</td>
+				<td>{list.title}</td>
+				<td>{list.description}</td>
+				<td>{list.amount} ฿</td> 
+				<td>{list.date}</td> 
 			</tr>
+			{/each}
 		</table>
 	</div>
  </section>
@@ -37,5 +62,17 @@
 	main {
 		font-family: 'Prompt'; 
 		text-align: center;
+	}
+
+	table {
+		margin-right: auto;
+		margin-left: auto;
+		font-size: 25px;
+		margin-bottom: 10px; 
+ 	}
+
+	td {
+		margin-right: 10%;
+		margin-left: 10%; 
 	}
 </style>
