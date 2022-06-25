@@ -1,6 +1,8 @@
 <script lang="ts"> 
   import Logo from '../assets/logo/nhee-memo.png';
-  import Counter from '../lib/Counter.svelte';
+  import Button from '../lib/Button.svelte';
+
+  let login: boolean = false; 
 </script>
 
 <main>
@@ -14,9 +16,18 @@
   </header>
   <section class="body">
     <div>
-      <a href="https://example.com"> 
-        <Counter />
-      </a>
+      {#if !login}
+        <a href="http://localhost:3000/#/">  
+          <Button content="สมัครสมาชิก" /> 
+        </a>
+        <a href="http://localhost:3000/#/">  
+          <Button content="ล็อกอิน" /> 
+        </a>
+      {:else}
+        <a href="http://localhost:3000/#/">  
+          <Button content="เริ่มการจดบันทึก" />  
+        </a>
+      {/if} 
     </div>
   </section>
 </main>

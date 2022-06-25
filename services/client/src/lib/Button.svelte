@@ -1,12 +1,9 @@
 <script lang="ts">
-  // let count: number = 0
-  // const increment = () => {
-  //   count += 1
-  // }
+  export let content;
 </script>
 
 <button>
-  เริ่มการจดบันทึก
+  {content} 
 </button>
 
 <style>
