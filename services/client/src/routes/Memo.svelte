@@ -2,26 +2,17 @@
 	import axios from 'axios';
 	import {onMount} from 'svelte';
 	import Button from '../lib/Button.svelte';
-
-	interface IListData {
-		id: number;
-		title: string;
-		description: string;
-		amount: number;
-		date: string;
-	}
+	import {IListData} from '../interface/ListData.interface.ts';
 
 	// Get API Data.
-	// let data, response;
-	// let lists: IListData[] = [];
-	let lists = []; 
+	let lists: IListData[] = []; 
 	onMount(async() => {
 		const response = await axios.get('http://localhost:9000/lists')
-		lists = response.data;
-		// data.map(x => {
-		// 	lists.push(x);
-		// });
+		lists = await response.data;
 	});
+
+	// Add
+	let isAdd: boolean = false;
 
 </script>
 
@@ -41,9 +32,9 @@
 				<th>Amount</th>
 				<th>Date</th>
 			</tr>
-			{#each lists as list}
+			{#each lists as list, index}
 			<tr>
-				<td>{list.id}</td>
+				<td>{index + 1}</td>
 				<td>{list.title}</td>
 				<td>{list.description}</td>
 				<td>{list.amount} ฿</td> 
