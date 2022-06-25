@@ -1,0 +1,15 @@
+{
+    "name": "@nhee-memo/server",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.18.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.18"
+    },
+    "scripts": {
+        "start": "nodemon app.js"
+    }
+}
