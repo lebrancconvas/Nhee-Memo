@@ -19,7 +19,7 @@
 <main>
  <header>
 	<div>
-		<h1>Memo</h1>
+		<h1>Liability List</h1> 
 	</div>
  </header>
  <section class="table">
