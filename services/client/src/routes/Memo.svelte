@@ -1,27 +1,37 @@
 <script lang="ts">
-	import axios from 'axios';
+	import axios, { AxiosResponse } from 'axios';
 	import {onMount} from 'svelte';
 	import Button from '../lib/Button.svelte';
-	import {IListData} from '../interface/ListData.interface.ts';
+	// import type {IListData} from '../interface/ListData.interface.ts';
 
 	// Get API Data.
-	let lists: IListData[] = []; 
+	let lists = []; 
 	onMount(async() => {
-		const response = await axios.get('http://localhost:9000/lists')
+		const response: AxiosResponse = await axios.get('http://localhost:9000/lists')
 		lists = await response.data;
 	});
 
 	// Add
 	let isAdd: boolean = false;
 
+	const add = (): void => {
+		isAdd = true;
+	}
+
+	const closeAdd = (): void => {
+		isAdd = false;
+	}
+
 </script>
 
 <main>
+
  <header>
 	<div>
 		<h1>Liability List</h1> 
 	</div>
  </header>
+
  <section class="table">
 	<div>
 		<table>
@@ -44,9 +54,22 @@
 		</table>
 	</div>
  </section>
+
  <section class="add">
-	<Button content="เพิ่ม" /> 
+	<div on:click={add}>
+		<Button content="เพิ่ม" /> 
+	</div>
  </section>
+
+ {#if isAdd}
+ <modal>
+	<section class="addForm">
+		<button on:click={closeAdd}>ปิด</button>
+		<h3>กรุณากรอกข้อมูลยอดค่าชำระของคุณ</h3>  
+	</section>
+ </modal>
+ {/if} 
+
 </main>
 
 <style>
@@ -65,5 +88,18 @@
 	td {
 		margin-right: 10%;
 		margin-left: 10%; 
+	}
+
+	.addForm {
+		z-index: 9999;
+		position: relative;
+		background: white;
+		filter: drop-shadow(5px 5px 5px #555);
+		padding: 1em;
+		border: 2px solid #000;
+		border-radius: 10px;
+		width: 350px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 </style>
